@@ -119,10 +119,10 @@ node * mergeSort(node *head){
 bool DetectCycle(node *head){  //
     node *slow=head;
     node*fast=head;
-    while(fast!=NULL && fast->next!=NULL){
+    while(fast!=NULL && fast->next!=NULL){  
         fast=fast->next->next;
-        slaow=slow->next;
-        if (fast==slow)  return true;
+        slow=slow->next;
+        if (fast==slow)  return true;        
     }
     return false;
 }
