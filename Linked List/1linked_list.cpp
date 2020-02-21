@@ -1,5 +1,5 @@
 //time complexities
-//insertion, deletion takes O(1) here extra point is used else O(n)
+//insertion, deletion takes O(1) here extra pointer is used else O(n)
 //indexing, search takes O(n)
 //space complexity O(n)
 
