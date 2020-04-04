@@ -5,6 +5,10 @@
 #include<list>
 #include<map>
 using namespace std;
+//in this algo we use dfs to rreach the last node and while returning we push
+//the node to linked list, because we know that the all children of this node
+//are traversed and pushed in list
+//hindi : wpas aate time list me dalte rho ;
 
 template<typename T>
 class Graph{
@@ -34,13 +38,16 @@ class Graph{
                     dfsHelper(neighbour, visited, ordering);
                 }
             }
-            ordering.push_front(node);
+            //at this ponit all the neighbour(child) of aurrent node are visited
+            //so will push back that to list
+            ordering.push_front(node);//it will add to head of list
         }
 
         void dfsTopologicalSort(){
             map<T,bool> visited;
             list<T> ordering;
-            for (auto i: adjList){
+            for (auto i: adjList){//loop is used to make this code to run for
+            //all components of a graph.
                 T node=i.first;
                 if(!visited[node])
                     dfsHelper(node, visited,ordering);

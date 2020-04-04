@@ -69,7 +69,7 @@ class Graph{
                   if (distance[neighbours]==INT8_MAX){
                       q.push(neighbours);
                       distance[neighbours]=distance[node]+1;
-                      parrent[neighbours]=node;
+                     parrent[neighbours]=node;
                   }
               }
                 

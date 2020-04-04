@@ -3,7 +3,7 @@
 #include<map>
 #include <queue>
 using namespace std;
-
+//Cycle Detection in UNDIRECTED graph
 template<typename T>
 class Graph{
         map<T, list<T>> adjList;
@@ -16,6 +16,11 @@ class Graph{
             if (bidir) adjList[v].push_back(u);
         }
 
+        //in this algo we check if we visit a node1 that is already vistied it
+        //means a cycle is present in it but we have to also check that this node1
+        //is not parrent of the node from where we are visiting node1;
+        // else everything is same as bfs 
+
         bool isCycle(T src){
             map<T,T> parrent;
             map<T,bool> visited;
@@ -25,7 +30,7 @@ class Graph{
             parrent[src]=src;
             while(!q.empty()){
                 T node=q.front();
-                q.pop();
+                q.pop();//
                 for(auto neighbours: adjList[node]){
                     if (visited[neighbours]==true && parrent[node]!=neighbours)
                         return true;

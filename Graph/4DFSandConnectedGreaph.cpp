@@ -41,6 +41,18 @@ class Graph{
         void dfs(T src){
             map<T,bool> visited;
             dfsHelper(src, visited);
+            //here to get another component of graph we have to
+            //find the vertex from adjList which is not visited then call
+            //dfsHwlpwer on that
+            /* cout<<endl;
+            int component=0;
+            for(auto i: adjList){
+                T city=i.first;
+                if(!visited[city]){
+                    defHelper(city, visited);
+                    component++;
+                }
+            }*/
         }
 };
 
