@@ -45,10 +45,11 @@ class Graph{
             //find the vertex from adjList which is not visited then call
             //dfsHwlpwer on that
             /* cout<<endl;
-            int component=0;
+            int component=0;//to count the connected parts of graph
             for(auto i: adjList){
                 T city=i.first;
-                if(!visited[city]){
+                if(!visited[city]){//finding the non visited nodes of graph
+                //ans visiting them.
                     defHelper(city, visited);
                     component++;
                 }
