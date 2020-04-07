@@ -1,3 +1,5 @@
+//It is a graph taversal algorith. each node is covered starting from a source node
+
 //time complexitu O(V+E)
 //space O(V)
 //queue for fifo and array/map tp maintain the record of the visited nodes
