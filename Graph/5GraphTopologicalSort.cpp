@@ -1,6 +1,8 @@
 //simple algorithm that outputs linear ordering of vertices of the graph
 ///such that (u->v) then u comes before v
 //works only of DAG directed acyclic graphs
+//it tells the pre-requisite
+//it can be used in package installing, to check which should come first.
 #include <iostream>
 #include<list>
 #include<map>
@@ -38,9 +40,10 @@ class Graph{
                     dfsHelper(neighbour, visited, ordering);
                 }
             }
-            //at this ponit all the neighbour(child) of aurrent node are visited
-            //so will push back that to list
+            //at this ponit all the neighbour(children and grandchildren and we cant move ahead ) of current node are visited
+            //so will push back that to front of list(recursively come back and check for its previous 
             ordering.push_front(node);//it will add to head of list
+                //here we can also use stack for odering
         }
 
         void dfsTopologicalSort(){
@@ -77,4 +80,9 @@ int main(){
 
 
 }
+//HINDI
+//src ke ek neighbour pe gye fir uske neighbour pe fir uske finally ab aaage nhi ja sakte to jha h use push kr diya aur 
+//uske just pichle wale me aa gye (reusrsion start previous process  repeat hoga) 
+//  ::::  fir iske neighbour(agr nhi hai to ise bhi store krke waps laut gye) neighbour.. jha se aage mhi ja skte use store kr waps
+//aa gye sare pe aise hi bari bari se krna hai
 
