@@ -19,7 +19,8 @@ class Graph{
         //in this algo we check if we visit a node1 that is already vistied it
         //means a cycle is present in it but we have to also check that this node1
         //is not parrent of the node from where we are visiting node1;
-        // else everything is same as bfs 
+        // else everything is same as bfs
+        //node-->node1  node1 should not be parrent of node for cycle
 
         bool isCycle(T src){
             map<T,T> parrent;
