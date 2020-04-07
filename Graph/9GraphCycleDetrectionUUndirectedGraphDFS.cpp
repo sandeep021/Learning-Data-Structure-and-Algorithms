@@ -22,7 +22,7 @@ bool dfsHelper(int node,map<int, bool> &visited, map<int, list<int>> &adjlist, i
             if(cycle) 
                 return true;   
         }
-        //2. if nide is visited and its parrent is node the node from which
+        //2. if nide is visited and its parrent is the node from which
         //we are reaching to it.
         else if(nei!=parrent)
                 return true;
