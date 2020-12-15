@@ -38,7 +38,7 @@ int height(node *root){
     if (root==NULL)  return 0;
     int ls=height(root->left);
     int rs=height(root->right);
-    return (max(ls,rs)+1);
+    return (max(ls,rs)+1);//root ki height is maxof(leftheight, rightheight)+1;
 }
 
 
@@ -62,21 +62,22 @@ void PrintAllLevel(node* root){
     }
     return;
 }
-
+//bfs traversal to print levelwise.
 void bfs(node * root){
     queue <node*> q;
     q.push(root);
-    q.push(NULL);
-    
+    q.push(NULL);//insted of NULL pushing i can use size of queue
+    //eache level size will be poped and new level will be pushed......
+   //another way is make pair of node data and node level and push it in queue
+   //and change line according to queue level data. 
     while(!q.empty()){
         node *f=q.front();
-        if (f==NULL){//for make  print looklike levelwise
-        //push null after each level or store level vale in queue and use that 
-        //to change line
+        if (f==NULL){//when we find NULL in queue we will do line change and also pop NULL
+        // and again push the null because all nodes of next level will be in queue already.
             cout<<endl;
             q.pop();
             if(!q.empty())  q.push(NULL);
-              //level complete now go to next level
+              //last me nhi push krenge kuki ab line change nhi krni
         }
         else{
             cout<<f->data<<" ";
@@ -103,12 +104,16 @@ int Sum(node *root){
 }
 
 int diameter(node * root){//diameter is max distance between two nodes
-    if (root==NULL)  return 0;//here Time taken is O(n2).
+//means max no of edges between two nodes
+    if (root==NULL)  return 0;//here Time taken is O(n2) bacause
+    //hr node ka height calculate hoga aur height khud O(n) leta hai. 
     int h1=height(root->left);
     int h2=height(root->right);
-    int opt1=h1+h2;//when diameter passes through root
-    int opt2=diameter(root->left);//when diameter is only in left subtree
+    int opt1=h1+h2;//when diameter passes through root.
+    int opt2=diameter(root->left);//when diameter is only in left subtree.
+    //left side me sare node pe call hoga function.
     int opt3=diameter(root->right);//.......only in right subtree
+    //right side me sare pe call hoga.
     return max(opt1,max(opt2,opt3));
 
 }
@@ -136,10 +141,10 @@ Pair fatsDiameter(node* root){
     }
 
 }
-
+//Q. replace all the node with sum of its all decendent nodes.
 int ReplaceSum(node *root){
     if (root==NULL) return 0;
-    if (root->left==NULL && root->right==NULL)  return root->data;
+    if (root->left==NULL && root->right==NULL)  return root->data;//because leaf ko bhi vhange nhi krna hai
     int leftSum=ReplaceSum(root->left);
     int rightSum=ReplaceSum(root->right);
     int temp=root->data;
@@ -160,7 +165,7 @@ HBPair IsHeightBalance(node* root){
         return p;
     }
     HBPair left = IsHeightBalance(root->left);
-    HBPair right= IsHeightBalance(root->right);
+    HBPair right= IsHeightBalance(root->right); 
     p.height=max(left.height,right.height)+1;
     if (abs(left.height-right.height) && left.balance && right.balance){
         p.balance=true;
@@ -186,6 +191,7 @@ node * CreateTreeFromTrav(int * ino, int*preo, int start, int end){
     if (start>end) return NULL;
     node *root= new node(preo[i]);
     int index=-1;
+    //instead of this loop kan use map to save the index of preorder elements.
     for (int j=start;j<=end;j++){
         if (ino[j]==preo[i]){
             index= j;
@@ -198,6 +204,30 @@ node * CreateTreeFromTrav(int * ino, int*preo, int start, int end){
     return root;
 }
 
+/*
+TreeNode* trav(vector<int> &in, vector<int> &pre, int s, int e, int&i, unordered_map<int, int> &map){
+     //int i=0;
+     if(s>e) return NULL;
+     TreeNode* root=new TreeNode(pre[i]);
+     int mid=map[pre[i]];
+    //  for(int j=s;j<=e;j++){
+    //      if(in[j]==pre[i]){
+    //          mid=j;
+    //          break;
+    //      }
+    //  }
+     i++;
+     root->left=trav(in, pre, s, mid-1, i, map);
+     root->right=trav(in, pre, mid+1, e, i, map);
+     return root;
+ }
+TreeNode* Solution::buildTree(vector<int> &A, vector<int> &B) {
+    int  i=0;
+    unordered_map<int, int> map;
+    for(int j=0;j<A.size();j++) map[B[j]]=j;
+    return trav(B, A, 0, A.size()-1, i, map);
+}
+*/
 
 
 int main(){

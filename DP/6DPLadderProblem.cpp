@@ -1,5 +1,5 @@
 //Q: No of ways to reach nth ladder step 1 to k steps at a time are allowed
-///VERY GOOD MUST REMEBER IT 
+///
 #include <bits/stdc++.h>
 using namespace std;
 int memo[100];

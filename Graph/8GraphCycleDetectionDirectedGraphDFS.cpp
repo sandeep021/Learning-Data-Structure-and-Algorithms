@@ -14,13 +14,15 @@ bool dfsHelper(int node,map<int, bool> &visited,map<int, bool> & instack, map<in
     visited[node]=true;
     instack[node]=true;
     for(auto nei: adjlist[node]){
-        if((!visited[nei] && dfsHelper(nei,visited,instack,adjlist)) || (instack[nei] && visited[node]))
+        if(instack[nei]) return true;
+        else if((!visited[nei]))
+             if(dfsHelper(nei,visited,instack,adjlist)==true) return true;
+        } 
         //there are two cases when we get a cycle
-        //1. when a node is not visited but it goes to a node which is making cycle
-        //2. a node is already visited and also is in instack 
-             return true;
-    }
-    instack[node]=false;
+        //1. a node is already visited and also is in instack 
+        //2. when a node is not visited but it goes to a node which is making cycle
+    
+    instack[node]=false;//while returning ta
     return false;
 }
 

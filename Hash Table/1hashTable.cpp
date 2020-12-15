@@ -21,6 +21,7 @@ class node{
         this->value=value;//this wala jo h wo class ki key hai(1)
         //agr dono nam same honge to compiler confuse ho jaega
         //tb this pointer ka use krte hai
+        next=NULL;
         }
         ~node(){
             if (next!=NULL){
@@ -31,10 +32,10 @@ class node{
 };
 template<typename T>
 class HashTable{
-    int cs;
-    int ts;
-    node<T> ** bucket;//addres of array containing (pointer)
-    //or head address of all the linked list.
+    int cs;//current size
+    int ts;//table size
+    node<T> ** bucket;//pointer to hash table which have array of pointer to all
+    //the linked list.
 
 
     void rehash(){
@@ -88,8 +89,8 @@ class HashTable{
     void insert(string key, T value){
         int i=HashFunction(key);
         node<T>*n=new node<T>(key,value);
-        n->next=bucket[i];
-        bucket[i]=n;
+        n->next=bucket[i];//1
+        bucket[i]=n;//2 these two lines to add new node to head of the list.
         cs++;
         float load_factor=(float)cs/ts;
         if (load_factor>0.7){

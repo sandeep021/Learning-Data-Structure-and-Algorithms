@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
+#include<climits>
 #include<queue>
-
+//Note : searchcomplexity of BST: best me O(logn) and worst me O(n)--jb skew tree hoga tab.
 class node{
     public:
         int data;
@@ -93,22 +94,59 @@ node * deleteINBST(node*root, int data){
     }
     else if (data=root->data){
         //three cases
+        //1. when deleted node has no child;
+        if(root->left==NULL and root->right ==NULL){
+        delete(root);
+        return NULL;
+        }
+        //2. when node has one chile=d
+        else if(root->left!=NULL && root->right == NULL){
+            node * temp=root->left;
+            delete(root);
+            return temp;
+
+        }
+         else if(root->left==NULL && root->right != NULL){
+            node * temp=root->right;
+            delete(root);
+            return temp;
+        }
+        // when it have both childs
+        //then look for successor or predecessor relace it and delete;
+        node * replace=root->right;
+        while(root->left!=NULL);{//finding predecessor
+            replace=replace->left;
+        }
+        root->data=replace->data;//swapping valuse
+        root->right=deleteINBST(root->right, replace->data);//deleting replace from right of tree
     }
     else {
         root->right=deleteINBST(root->right, data);
-        return data;
+        return root;
     }
+    return NULL;
+}
+
+//Check for BST
+//we have to check if left is BST and right is BST + root is between max value of left and min value of right;
+
+bool isBST(node * root, int l=INT_MAX, int r=INT16_MIN){
+    if(root==NULL) return true;
+    if(l<=root->data && root->data<=r && isBST(root->left,l,root->data) && isBST(root->right, root->data, r)){
+        return true;
+    }
+    return false;
 }
 
 
 int main(){
     node*root=build();
-    int s;
-    cin>>s;
-    inorder(root);
+    //int s;
+    //cin>>s;
+    //inorder(root);
     //cout<<endl;
     //bfs(root);
-    cout<<searchInBST(root,s);
-
+    //cout<<searchInBST(root,s);
+    cout<<isBST(root);
     return 0;
 }

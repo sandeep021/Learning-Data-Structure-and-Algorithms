@@ -3,7 +3,7 @@ using namespace std;
 
 int LIS(int arr[100], int n ){
     int dp[104];
-    int best=-1;
+    int best=1;
     for (int i=0;i<n;i++)  dp[i]=1;
     for(int i=0;i<n;i++){//for each cell
         for (int j=0;j<i;j++){//for chacking all the previous value and updation current cell if lis exidt

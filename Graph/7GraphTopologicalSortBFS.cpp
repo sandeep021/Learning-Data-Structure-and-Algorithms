@@ -13,12 +13,10 @@ void addEdge(string u, string v, map<string, list<string>> &adjlist, bool bidir=
 //visiting map to mark the visited nodes 
 
 void topoLOgicalSortBFS(map<string, list<string>> &adjlist){
-    map<string, bool> visited;
     map<string, int> indegree;
     queue<string> q;
     for(auto i: adjlist){
         string node=i.first;
-        visited[i.first]=false;
         indegree[i.first]=0;
     }
     for(auto u: adjlist){//here there is edge from u to v
@@ -36,7 +34,6 @@ void topoLOgicalSortBFS(map<string, list<string>> &adjlist){
     while(!q.empty()){
         string temp=q.front();
         cout<<temp<<" -->";
-        visited[temp]=true;
         for(auto nei: adjlist[temp]){
             indegree[nei]--;
             if(indegree[nei]==0) q.push(nei);

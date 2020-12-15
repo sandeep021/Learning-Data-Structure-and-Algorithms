@@ -1,6 +1,6 @@
 //simple algorithm that outputs linear ordering of vertices of the graph
 ///such that (u->v) then u comes before v
-//works only of DAG directed acyclic graphs
+//works only of DAG directed acyclic graphs------------------>important
 //it tells the pre-requisite
 //it can be used in package installing, to check which should come first.
 #include <iostream>
@@ -68,7 +68,7 @@ int main(){
     g.addEdge("English","Programming Logic", false);
     g.addEdge("Math","Programming Logic", false);
     g.addEdge("Programming Logic","HTML", false);
-    g.addEdge("English","Programming Logic", false);
+   // g.addEdge("English","Programming Logic", false);
     g.addEdge("Programming Logic","Python", false);
     g.addEdge("Programming Logic","Java", false);
     g.addEdge("Python"," Web Dev", false);
