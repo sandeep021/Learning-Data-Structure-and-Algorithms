@@ -5,6 +5,7 @@
 1. Edge List
 2. Adjacency Matrix
 3. Adjacency list(mostly used)
+4.using hashmap
 */
 
 
